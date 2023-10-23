@@ -1,0 +1,45 @@
+%% init
+-- The init section contains raw sqlite code that executes before the template
+CREATE TEMP TABLE Edge ( up, dn );
+INSERT INTO Edge VALUES ('c', 'b');
+INSERT INTO Edge VALUES ('b', 'a');
+
+CREATE TABLE Foo (up, content);
+
+
+%% fini
+-- The fini section contains raw sqlite code that executes after the template
+DROP TABLE Edge;
+
+
+
+%% code
+{# The code section contains the actual template code #}
+
+
+{# It has comments! #}
+
+
+{# {# It has nested comments! #} #}
+
+
+{# It has macros! #}
+
+{% macro edge(@edge) ---%}
+    {{ @edge.up }} -> {{ @edge.dn }};
+{%- endmacro %}
+
+{% macro main() ---%}
+digraph {
+    {%- FROM Edge $E ORDER BY up DESC %}
+    {{ call edge($E) }}
+    {%-- END %}
+}
+{%--- endmacro %}
+
+
+{# And finally, the the main template #}
+/* Here's a graph */
+{{ call main() }}
+
+%% done
