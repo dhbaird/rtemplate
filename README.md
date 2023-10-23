@@ -4,7 +4,7 @@
 
 To run a demo that demonstrates SQL data initialization and template macros and rendering:
 ```
-python rtemplate.py demo.tmpl
+python3 rtemplate.py demo.tmpl
 # >>>
  digraph {
      c -> b;
@@ -14,7 +14,7 @@ python rtemplate.py demo.tmpl
 
 If you want to see the raw SQL code, run this:
 ```
-python rtemplate.py --no-sqlite3 demo.tmpl
+python3 rtemplate.py --no-sqlite3 demo.tmpl
 # >>>
 ATTACH DATABASE '/tmp/reltpl4irasmmy/sys.db' AS sys;
 DROP TABLE IF EXISTS sys.sys_Write;
