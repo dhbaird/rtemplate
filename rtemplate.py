@@ -150,7 +150,7 @@ class Options(namedtuple('Options', ['includePaths', 'db', 'sysDb', 'noMcpp', 'n
             includePaths=args.includePaths or [],
             db=args.db,
             sysDb=args.sysDb,
-            noMcpp=args.yesMcpp,
+            noMcpp=not args.yesMcpp,
             noRender=args.noRender,
             noSqlite3=args.noSqlite3,
             quiet=args.quiet,

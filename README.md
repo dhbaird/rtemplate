@@ -6,17 +6,19 @@ To run a demo that demonstrates SQL data initialization and template macros and 
 ```
 python3 rtemplate.py demo.tmpl
 # >>>
- digraph {
-     c -> b;
-     b -> a;
- }
+/* Here's a graph */
+digraph {
+    c -> b;
+    b -> a;
+}
+
 ```
 
 If you want to see the raw SQL code, run this:
 ```
 python3 rtemplate.py --no-sqlite3 demo.tmpl
 # >>>
-ATTACH DATABASE '/tmp/reltpl4irasmmy/sys.db' AS sys;
+ATTACH DATABASE '/tmp/reltplm6ttesxf/sys.db' AS sys;
 DROP TABLE IF EXISTS sys.sys_Write;
 CREATE TABLE sys.sys_Write ( path UNIQUE, content );
 
@@ -27,7 +29,7 @@ INSERT INTO Edge VALUES ('b', 'a');
 
 CREATE TABLE Foo (up, content);
 
-SELECT printf('%s'
+SELECT printf('/* Here''s a graph */' || x'0a' || '%s'
   , (
     SELECT printf('digraph {' || x'0a' || '%s}'
       , (SELECT group_concat(_pp, '') FROM (
