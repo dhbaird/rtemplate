@@ -23,7 +23,7 @@ DROP TABLE Edge;
 {# {# It has nested comments! #} #}
 
 
-{# It has macros! #}
+{# It has macros! The macros are even hygienic! #}
 
 {% macro edge(@edge) ---%}
     {{ @edge.up }} -> {{ @edge.dn }};
